@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-xl-12">
+        <div class="header_title">
+            <p> Hypertube !</p>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <!-- Nav Bar when logged in -->
+        <nav *ngIf="currentUser">
+            <a routerLink="/home" routerLinkActive="active"><i class="fas fa-home"></i></a>
+            <a routerLink="/settings" routerLinkActive="active"><i
+                    class="fas fa-user-cog"></i> {{ currentUser.username }}</a>
+            <a (click)="logout()"><i class="fas fa-sign-out-alt"></i> Log out</a>
+        </nav>
+        <!-- Nav Bar when not logged in -->
+        <nav *ngIf="!currentUser">
+            <a routerLink="/login" routerLinkActive="active"><i class="fas fa-sign-in-alt"></i> Sign in</a>
+            <a routerLink="/register" routerLinkActive="active"><i class="far fa-plus-square"></i> Sign up</a>
+        </nav>
+    </div>
+</div>

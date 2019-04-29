@@ -1,0 +1,10 @@
+<div id="contain" class="col-lg-12 col-md-12 col-sm-12">
+    <div class="c_avatar col-lg-2 col-md-2 col-sm-12">
+        <img class="avatar" *ngIf="avatar_user" [src]="avatar_user"/>
+    </div>
+    <div class="details col-lg-10 col-md-10 col-sm-12">
+        <p class="posted_by col-lg-12 col-md-12 col-sm-8">Posted by <a href="/profil/{{com.id_user}}">{{login_user}}</a>
+            on {{date}} at {{heure}}</p>
+        <p class="corp_com col-lg-12 col-md-12 col-sm-8">{{com.com}}</p>
+    </div>
+</div>

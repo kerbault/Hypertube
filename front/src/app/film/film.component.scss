@@ -1,0 +1,59 @@
+.mat-card {
+  color: rgba(255, 255, 255, 0.87);
+  background: inherit;
+
+}
+
+.affiche {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 10vh;
+  max-height: 35vh;
+  height: -webkit-fill-available;
+}
+
+.mat-card-content {
+  display: none;
+}
+
+.example-card:hover .mat-card-content {
+  background: #000000;
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  text-align: center;
+  color: #ffffff;
+  border-radius: 20px;
+  border-top: white solid;
+  right: 0;
+}
+
+.example-card {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+}
+
+#vu {
+  padding-right: 10px;
+}
+
+.example-card:hover {
+  background: #000000b8;
+  -webkit-transform: scale(1.3);
+  transform: scale(1.1);
+}
+
+.example-card:hover #vu {
+  color: rgba(255, 20, 255, 0.87);
+}
+
+.mat-card-header {
+  max-height: 30px;
+}
+
+.resume {
+  font-size: smaller;
+}

@@ -1,0 +1,98 @@
+<h1>Welcome to home</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 search-movie">
+            <input class="form-control" type="text" name="search" (keyup)="search($event, $event.target.value);"
+                   autocomplete="off" placeholder="&#61442;  Search a movie">
+        </div>
+    </div>
+    <form [formGroup]="triForm" (ngSubmit)="onSubmit()">
+        <div class="col-lg-12 col-md-12 radio-group">
+            <label id="label_tri" class="_tri col-md-3">Order by :</label>
+            <mat-radio-group aria-labelledby="label_tri" class="col-md-9" formControlName="tri">
+                <mat-radio-button class="_tri col-md-3 form-control" value="title">title</mat-radio-button>
+                <mat-radio-button class="_tri col-md-3 form-control" value="year">year</mat-radio-button>
+                <mat-radio-button class="_tri col-md-3 form-control" value="rating">rating</mat-radio-button>
+                <mat-radio-button class="_tri col-md-3 form-control" value="date_added">added date</mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <div class="col-lg-12 col-md-12 select-group">
+            <label id="label_filtre" class="col-md-3">Filter by :</label>
+            <mat-form-field class="col-md-3">
+                <mat-label>Genre :</mat-label>
+                <mat-select formControlName="filtre">
+                    <mat-option class="_filtre form-control">None</mat-option>
+                    <mat-option class="_filtre form-control" value="Action">Action</mat-option>
+                    <mat-option class="_filtre form-control" value="Adventure">Adventure</mat-option>
+                    <mat-option class="_filtre form-control" value="Animation">Animation</mat-option>
+                    <mat-option class="_filtre form-control" value="Biography">Biography</mat-option>
+                    <mat-option class="_filtre form-control" value="Comedy">Comedy</mat-option>
+                    <mat-option class="_filtre form-control" value="Crime">Crime</mat-option>
+                    <mat-option class="_filtre form-control" value="Documentary">Documentary</mat-option>
+                    <mat-option class="_filtre form-control" value="Drama">Drama</mat-option>
+                    <mat-option class="_filtre form-control" value="Family">Family</mat-option>
+                    <mat-option class="_filtre form-control" value="Fantasy">Fantasy</mat-option>
+                    <mat-option class="_filtre form-control" value="History">History</mat-option>
+                    <mat-option class="_filtre form-control" value="Horror">Horror</mat-option>
+                    <mat-option class="_filtre form-control" value="Musical">Musical</mat-option>
+                    <mat-option class="_filtre form-control" value="Mystery">Mystery</mat-option>
+                    <mat-option class="_filtre form-control" value="Romance">Romance</mat-option>
+                    <mat-option class="_filtre form-control" value="Sci-Fi">Sci-Fi</mat-option>
+                    <mat-option class="_filtre form-control" value="Short">Short</mat-option>
+                    <mat-option class="_filtre form-control" value="Sport">Sport</mat-option>
+                    <mat-option class="_filtre form-control" value="Superhero">Superhero</mat-option>
+                    <mat-option class="_filtre form-control" value="Thriller">Thriller</mat-option>
+                    <mat-option class="_filtre form-control" value="War">War</mat-option>
+                    <mat-option class="_filtre form-control" value="Western">Western</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="slider col-md-2">
+                <mat-label>Min rate :</mat-label>
+                <mat-slider formControlName="note_min" class="note_min form-control"
+                            thumbLabel
+                            [displayWith]="formatLabel"
+                            [step]="0.5"
+                            min="0"
+                            max="9">
+                </mat-slider>
+            </div>
+            <div class="year col-md-2">
+                <mat-label>Min year :</mat-label>
+                <input formControlName="year_min" class="year_min form-control" type="number" min=1916 matInput
+                       maxlength="4">
+            </div>
+            <div class="year col-md-2">
+                <mat-label>Max year :</mat-label>
+                <input formControlName="year_max" class="year_min form-control" type="number" min=1916 matInput
+                       maxlength="4">
+            </div>
+        </div>
+
+        <div class="_tri  form-group col-lg-12">
+            <button [disabled]="loading" class="btn btn-primary">Order/filter by</button>
+        </div>
+    </form>
+
+
+</div>
+
+<div class="principale" infiniteScroll [infiniteScrollDistance]="0.4" [infiniteScrollThrottle]="500"
+     (scrolled)="onScroll()">
+    <app-film *ngFor="let film of films"
+              [title]="film.name"
+              [year]="film.year"
+              [duration]="film.duree"
+              [affiche]=film.affiche
+              [resume]=film.synopsis
+              [note]=film.rating
+              [id]=film.id></app-film>
+    <app-film *ngFor="let movie of movies$"
+              [title]="movie.name"
+              [year]="movie.year"
+              [duration]="movie.duree"
+              [affiche]=movie.affiche
+              [resume]=movie.synopsis
+              [note]=movie.rating
+              [id]=movie.id></app-film>
+</div>

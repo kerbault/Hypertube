@@ -1,0 +1,83 @@
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h2 class="login-title">Register</h2>
+        <form [formGroup]="registerfrom" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" formControlName="username" pattern="^[a-zA-Z0-9]{2,50}$" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.username.errors }"/>
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.required">Username is required</div>
+                    <div *ngIf="f.username.errors">Username must contain only letters and numbers</div>
+                </div>
+            </div>
+            <div class="form-group col-lg-6" id="left">
+                <label for="password">Password</label>
+                <input type="password" pattern="^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W  || '_').*$"
+                       formControlName="password" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                    <div *ngIf="f.password.errors">Password (8 characters min) must contain at least: one uppercase, one
+                        lowercase, one number, and one special character
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-lg-6" id="right">
+                <label for="password">Password Confirmation</label>
+                <input type="password" pattern="^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W  || '_').*$"
+                       formControlName="password2" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.password2.errors }"/>
+                <div *ngIf="submitted && f.password2.errors" class="invalid-feedback">
+                    <div *ngIf="f.password2.errors.required">Password confirmation is required</div>
+                    <div *ngIf="f.password2.errors ">Password (8 characters min) must contain at least: one uppercase,
+                        one lowercase, one number, and one special character
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-lg-12" id="all">
+                <label for="password">Mail</label>
+                <input type="mail" pattern="[^@]+@[^@]+\.[\w]{1,255}" formControlName="mail" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.mail.errors }"/>
+                <div *ngIf="submitted && f.mail.errors" class="invalid-feedback">
+                    <div *ngIf="f.mail.errors.required">Mail is required</div>
+                    <div *ngIf="f.mail.errors">Wrong Format</div>
+                </div>
+            </div>
+            <div class="form-group col-lg-6" id="left">
+                <label for="firstname">Firstname</label>
+                <input type="text" pattern="[A-Za-z]+" formControlName="firstname" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }"/>
+                <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                    <div *ngIf="f.firstname.errors.required">Firstname is required</div>
+                    <div *ngIf="f.firstname.errors">Wrong Format</div>
+                </div>
+            </div>
+            <div class="form-group col-lg-6" id="right">
+                <label for="lastname">Lastname</label>
+                <input type="text" pattern="[A-Za-z]+" formControlName="lastname" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }"/>
+                <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+                    <div *ngIf="f.lastname.errors.required">Lastname is required</div>
+                    <div *ngIf="f.lastname.errors">Wrong Format</div>
+                </div>
+            </div>
+            <div id="containt" class="col-lg-12">
+                <label for="matButtonToggleGroup">Choose your avatar : </label>
+                <mat-button-toggle-group [(value)]="selectedValue" #group="matButtonToggleGroup"
+                                         value="assets/default.png">
+                    <mat-button-toggle *ngFor="let avatar of avatars" (change)="selectionChanged($event)"
+                                       [value]="avatar.src" class="col-lg-2">
+                        <img class="mini_avatar col-lg-12" [src]="avatar.src"/>
+                    </mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+            <div id="register_button" class="form-group col-lg-12">
+                <button [disabled]="loading" class="btn btn-primary">Register</button>
+                <img *ngIf="loading" class="pl-2"
+                     src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+            </div>
+        </form>
+    </div>
+</div>
+<div *ngIf="error" class="alert alert-danger">{{error}}</div>

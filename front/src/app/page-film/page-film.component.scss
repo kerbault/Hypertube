@@ -1,0 +1,63 @@
+// .player{
+//     text-align: center;
+//     color: white;
+//     padding-bottom: 20px;
+//     height: 550px;
+//     display: flex;
+//     align-items: center;
+//     margin-top: 30px;
+//     margin-bottom: 20px;
+//     justify-content: center;
+//     //background-image: url('http://www.premiere.fr/sites/default/files/styles/scale_crop_1280x720/public/2018-04/man-of-steel-henry-cavill.jpg');
+//     background-repeat: no-repeat;
+//     background-size: contain;
+//     background-position: center;
+// }
+
+.player {
+  display: flex;
+  position: absolute;
+  z-index: 1230;
+  height: 100%;
+  padding: 0;
+}
+
+.info_film {
+  padding-top: 25px;
+}
+
+
+.info_film p {
+  padding: 10px;
+  color: white;
+}
+
+.infos {
+  color: #b96e6e;
+  text-decoration: none;
+}
+
+.commentaire {
+  display: flex;
+  color: white;
+  height: 200px;
+  margin: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+#film-title {
+  color: white;
+  text-align: center;
+  text-decoration: underline;
+}
+
+textarea {
+  background-color: #caace854;
+  color: aliceblue;
+}
+
+textarea:focus {
+  background-color: #caace854;
+  color: aliceblue;
+}

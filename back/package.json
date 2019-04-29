@@ -1,0 +1,49 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Express Server API",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm install && nodemon src/index.js",
+    "test": "\"echo \\\\\\\"Error: no test specified\\\\\\\" && exit 1\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Drakauf/Hypertube.git"
+  },
+  "author": "shthevak",
+  "license": "UNLICENCED",
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.0.17",
+    "bcrypt": "latest",
+    "cookie-session": "latest",
+    "cors": "latest",
+    "cron": "^1.7.1",
+    "express": "^4.16.3",
+    "express-logging": "^1.1.1",
+    "express-session": "^1.16.1",
+    "express-validator": "^5.3.1",
+    "file-system": "2.2.2",
+    "fluent-ffmpeg": "^2.1.2",
+    "generate-password": "latest",
+    "jsonwebtoken": "8.5.1",
+    "mongoose": "^5.4.16",
+    "mongoose-findorcreate": "^3.0.0",
+    "node-fetch": "^2.4.1",
+    "nodemailer": "latest",
+    "nodemon": "^1.14.7",
+    "opensubtitles-api": "latest",
+    "passport": "^0.4.0",
+    "passport-42": "latest",
+    "passport-github": "latest",
+    "passport-google-oauth20": "latest",
+    "passport-local": "latest",
+    "pump": "^3.0.0",
+    "request": "latest",
+    "sha512": "latest",
+    "torrent-stream": "latest",
+    "vg": "^0.3.3",
+    "videogular2": "^6.4.0",
+    "yifysubtitles": "^2.1.2"
+  }
+}

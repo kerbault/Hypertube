@@ -1,0 +1,45 @@
+<form [formGroup]="ModifyForm" (ngSubmit)="onSubmit()">
+    <div class="form-group col-lg-6" id="left">
+        <label for="firstname">Firstname</label>
+        <input type="text" pattern="[A-Za-z]+" formControlName="firstname" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" [(ngModel)]="firstname"/>
+        <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+            <div *ngIf="f.firstname.errors.required">Firstname is required</div>
+            <div *ngIf="f.firstname.errors">Wrong Format</div>
+        </div>
+    </div>
+    <div class="form-group col-lg-6" id="right">
+        <label for="lastname">Lastname</label>
+        <input type="text" pattern="[A-Za-z]+" formControlName="lastname" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" [(ngModel)]="lastname"/>
+        <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+            <div *ngIf="f.lastname.errors.required">Lastname is required</div>
+            <div *ngIf="f.lastname.errors">Wrong Format</div>
+        </div>
+    </div>
+    <div class="form-group col-lg-12" id="all">
+        <label for="mail">Mail</label>
+        <input type="mail" pattern="[^@]+@[^@]+\.[\w]{1,255}" formControlName="mail" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && f.mail.errors }" [(ngModel)]="mail"/>
+        <div *ngIf="submitted && f.mail.errors" class="invalid-feedback">
+            <div *ngIf="f.mail.errors.required">Mail is required</div>
+            <div *ngIf="f.mail.errors">Wrong Format</div>
+        </div>
+    </div>
+    <mat-form-field class="col-md-3">
+        <mat-label>Langue :</mat-label>
+        <mat-select formControlName="language">
+            <mat-option class="_filtre form-control" value="english">English</mat-option>
+            <mat-option class="_filtre form-control" value="french">Francais</mat-option>
+            <mat-option class="_filtre form-control" value="italian">Italien</mat-option>
+            <mat-option class="_filtre form-control" value="spanish">Español</mat-option>
+            <mat-option class="_filtre form-control" value="german">Deutsch</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div class="form-group col-lg-12">
+        <button [disabled]="loading" class="btn btn-primary">Modify</button>
+        <img *ngIf="loading" class="pl-2"
+             src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+    </div>
+</form>
+<div *ngIf="error" class="alert alert-danger col-lg-12">{{error}}</div>

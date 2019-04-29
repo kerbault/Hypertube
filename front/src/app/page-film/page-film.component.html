@@ -1,0 +1,67 @@
+<div class="contener col-lg-12 col-md-12 col-sm-12">
+    <h2 id="film-title">{{title}}</h2>
+
+
+    <vg-player>
+        <img class="player col-lg-12 col-md-12 col-sm-12" id="image_before" *ngIf="background" [src]="background"
+             (click)="onclick()"/>
+        <vg-overlay-play></vg-overlay-play>
+        <vg-buffering></vg-buffering>
+        <vg-controls *ngIf="dl_ok" [vgAutohide]="true" [vgAutohideTime]="1.5">
+            <vg-play-pause></vg-play-pause>
+
+            <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+            <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+
+            <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+            <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+
+            <vg-track-selector vgFor="singleVideo"></vg-track-selector>
+            <vg-mute></vg-mute>
+            <vg-volume></vg-volume>
+
+            <vg-fullscreen></vg-fullscreen>
+        </vg-controls>
+        <video [vgMedia]="media" #media preload="auto" id="singleVideo" crossorigin>
+            <source *ngIf="src_video" [src]="src_video" type="video/mp4">
+        </video>
+    </vg-player>
+
+
+    <div class="info_film col-lg-12 col-md-12 col-sm-12">
+        <div class="col-lg-9 col-md-6 col-sm-12">
+            <p id="title">Title = <span class="infos">{{title}}</span></p>
+            <p id="year">Year = <span class="infos">{{year}}</span></p>
+            <p id="genres">Genres = <span class="infos">{{genre}}</span></p>
+            <p id="duration">Duration = <span class="infos">{{duration}} min</span></p>
+            <p id="cast">Casting = <span class="infos" *ngFor="let ac of cast">{{ac.name}} ({{ac.character_name}}
+                ) ,</span>
+            </p>
+            <p id="syno">Synopsis = <span class="infos">{{description}}</span>
+            </p>
+            <p id="note">Note = <span class="infos">{{note}}</span></p>
+        </div>
+        <img id="affiche" class="col-lg-3 col-md-6 col-sm-12" *ngIf="affiche" [src]="affiche" (error)="myFunction()"/>
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <commentaire class="com" *ngFor="let com of coms" [com]="com"></commentaire>
+    </div>
+    <div class="commentaire col-lg-12 col-md-12 col-sm-12">
+        <form [formGroup]="PostCom" (ngSubmit)="onSubmit()" class="col-lg-12">
+            <div class="form-group col-lg-10" id="all">
+                <label for="com" class="col-lg-2">votre commentaire :</label>
+                <textarea rows="6" cols="130" formControlName="com" class="form-control col-lg-10"
+                          [ngClass]="{ 'is-invalid': submitted && f.com.errors }" value={{com}}></textarea>
+                <div *ngIf="submitted && f.com.errors" class="invalid-feedback">
+                    <div *ngIf="f.com.errors.required">com is required</div>
+                </div>
+            </div>
+            <div class="form-group col-lg-2">
+                <button [disabled]="loading" class="btn btn-primary">Publier</button>
+                <img *ngIf="loading" class="pl-2"
+                     src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+            </div>
+        </form>
+    </div>
+</div>

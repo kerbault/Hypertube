@@ -1,0 +1,47 @@
+.login-title {
+  text-align: center;
+}
+
+label {
+  color: white;
+}
+
+h2 {
+  color: aliceblue;
+}
+
+input {
+  background-color: #caace854;
+  color: aliceblue;
+}
+
+input:focus {
+  background-color: #caace854;
+  color: aliceblue;
+}
+
+.OmniAuth {
+  text-align: center;
+}
+
+.OmniAuth img {
+  background: rgba(255, 255, 255, 0.5);
+  color: white;
+  height: 3vh;
+  width: 3vh;
+  margin-left: 1.5vh;
+  margin-right: 1.5vh;
+  margin-bottom: 0.5vh;
+  margin-top: 0.5vh;
+  -webkit-filter: grayscale(0) blur(0px);
+  filter: grayscale(0) blur(0px);
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.OmniAuth img:hover {
+  background: rgba(7, 121, 177, 1);
+  border-radius: 50%;
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg);
+}

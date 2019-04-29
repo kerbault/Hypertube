@@ -1,0 +1,9 @@
+<div id="containt">
+    <mat-button-toggle-group [(value)]="selectedValue" #group="matButtonToggleGroup">
+        <mat-button-toggle *ngFor="let avatar of avatars" (change)="selectionChanged($event)" [value]="avatar.src"
+                           class="col-lg-2">
+            <img class="mini_avatar col-lg-12" [src]="avatar.src"/>
+        </mat-button-toggle>
+    </mat-button-toggle-group>
+    <button mat-raised-button (click)="change()">Modify</button>
+</div>

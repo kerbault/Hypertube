@@ -1,0 +1,10 @@
+<div class="contain_normal col-lg-8 col-md-6 col-sm-12">
+    <h2>{{username}}</h2>
+    <p id="Nom">Lastname = <span class="infos">{{lastname}}</span></p>
+    <p id="Prenom">Firsname = <span class="infos">{{firstname}}</span></p>
+    <p id="language">Favourite language = <span class="infos">{{language}}</span></p>
+</div>
+
+<div class="image col-lg-4 col-md-6 col-sm-12">
+    <img id="_image" *ngIf="picture" [src]="picture"/>
+</div> 

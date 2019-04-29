@@ -1,0 +1,42 @@
+<form [formGroup]="ModifyForm" (ngSubmit)="onSubmit()">
+    <h4 id="warnig">Warning : if you modify your logs you will be log-out</h4>
+    <div class="form-group col-lg-12">
+        <label for="username">Username</label>
+        <input type="text" formControlName="username" pattern="^[a-zA-Z0-9]{2,50}$" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && f.username.errors }" [(ngModel)]="username"/>
+        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Username is required</div>
+            <div *ngIf="f.username.errors">Username must contain only letters and numbers</div>
+        </div>
+    </div>
+    <div class="form-group col-lg-6">
+        <label for="password">Password</label>
+        <input type="password" pattern="^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W  || '_').*$"
+               formControlName="password" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+            <div *ngIf="f.password.errors">Password (8 characters min) must contain at least: one uppercase, one
+                lowercase, one number, and one special character
+            </div>
+        </div>
+    </div>
+    <div class="form-group col-lg-6">
+        <label for="password">Password Confirmation</label>
+        <input type="password" pattern="^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W  || '_').*$"
+               formControlName="password2" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && f.password2.errors }"/>
+        <div *ngIf="submitted && f.password2.errors" class="invalid-feedback">
+            <div *ngIf="f.password2.errors.required">Password confirmation is required</div>
+            <div *ngIf="f.password2.errors ">Password (8 characters min) must contain at least: one uppercase, one
+                lowercase, one number, and one special character
+            </div>
+        </div>
+    </div>
+    <div class="form-group col-lg-12">
+        <button [disabled]="loading" class="btn btn-primary">Modify</button>
+        <img *ngIf="loading" class="pl-2"
+             src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+    </div>
+</form>
+<div *ngIf="error" class="alert alert-danger col-lg-12">{{error}}</div>
