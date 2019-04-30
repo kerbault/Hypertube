@@ -59,7 +59,7 @@ export class PageFilmComponent implements OnInit {
             com: ['', Validators.required]
         });
 
-        var user = JSON.parse(localStorage.getItem("currentUser"));
+        let user = JSON.parse(localStorage.getItem("currentUser"));
         this.userService.getUser(user.id)
             .subscribe(
                 data => {
@@ -70,7 +70,7 @@ export class PageFilmComponent implements OnInit {
                 });
 
 
-        var regex1 = RegExp('^tt');
+        let regex1 = RegExp('^tt');
         if (regex1.test(this.route.snapshot.paramMap.get("id"))) {
 
             this.id_tmp = this.route.snapshot.paramMap.get("id");
@@ -78,7 +78,7 @@ export class PageFilmComponent implements OnInit {
             this.filmService.getDetailFilmOMbd(this.route.snapshot.paramMap.get("id"))
                 .subscribe(
                     data => {
-                        var data2 = JSON.parse(JSON.stringify(data));
+                        let data2 = JSON.parse(JSON.stringify(data));
                         this.title = data2.name;
                         this.affiche = this.sanitization.bypassSecurityTrustUrl(data2.affiche);
                         this.year = data2.year;
@@ -98,7 +98,7 @@ export class PageFilmComponent implements OnInit {
             this.filmService.getDetailFilm(this.id)
                 .subscribe(
                     data => {
-                        var data2 = JSON.parse(JSON.stringify(data));
+                        let data2 = JSON.parse(JSON.stringify(data));
                         this.title = data2.name;
                         this.affiche = this.sanitization.bypassSecurityTrustUrl(data2.affiche);
                         this.year = data2.year;
@@ -142,7 +142,7 @@ export class PageFilmComponent implements OnInit {
             return;
         }
         this.loading = true;
-        var user = JSON.parse(localStorage.getItem("currentUser"));
+        let user = JSON.parse(localStorage.getItem("currentUser"));
         this.filmService.addCom(this.id, user.id, this.f.com.value)
             .subscribe(
                 data => {
@@ -160,8 +160,8 @@ export class PageFilmComponent implements OnInit {
     }
 
     onclick() {
-        var user = JSON.parse(localStorage.getItem("currentUser"));
-        var regex1 = RegExp('^tt');
+        let user = JSON.parse(localStorage.getItem("currentUser"));
+        let regex1 = RegExp('^tt');
         if (regex1.test(this.id_tmp)) {
             this.background = this.sanitization.bypassSecurityTrustUrl('/assets/sorry.png');
         } else {
@@ -171,25 +171,25 @@ export class PageFilmComponent implements OnInit {
         this.filmService.getsub(this.id_imdb)
             .subscribe(
                 data => {
-                    var singleVideo = document.getElementById("singleVideo");
+                    let singleVideo = document.getElementById("singleVideo");
                     let i = 0;
                     for (const da in data) {
-                        if (data[i].lang == "english") {
-                            var track = document.createElement("track");
+                        if (data[i].lang == "english" && data[i].path != '') {
+                            let track = document.createElement("track");
                             track.kind = "subtitles";
                             track.label = "english";
                             track.srclang = "en";
                             track.src = 'http://localhost:8080/subtitle_path/' + data[i].path;
                             singleVideo.appendChild(track);
-                        } else if (data[i].lang == this.user_pref) {
-                            var track = document.createElement("track");
+                        } else if (data[i].lang == this.user_pref && data[i].path != '') {
+                            let track = document.createElement("track");
                             track.kind = "subtitles";
                             track.label = this.user_pref;
                             track.srclang = data[i].langShort;
                             track.src = 'http://localhost:8080/subtitle_path/' + data[i].path;
                             singleVideo.appendChild(track);
-                        } else {
-                            var track = document.createElement("track");
+                        } else if (data[i].path !== ''){
+                            let track = document.createElement("track");
                             track.kind = "subtitles";
                             track.label = data[i].lang;
                             track.srclang = data[i].langShort;

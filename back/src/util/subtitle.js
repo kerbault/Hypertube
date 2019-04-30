@@ -20,10 +20,16 @@ module.exports = {
                 for (let element in subs) {
                     const pathRet = `${basePath}/${imdb_code}-${subs[i].langShort}.${subs[i].path.split('.').pop()}`;
                     path_name = `${imdb_code}-${subs[i].langShort}.${subs[i].path.split('.').pop()}`;
-                    fs.rename(subs[i].path, pathRet, e => {
-                        if (e) console.log(e);
-                    });
-                    subs[i].path = path_name;
+                    if (subs[i].path != '')
+                    {
+                        fs.rename(subs[i].path, pathRet, e => {
+                            if (e) console.log(e);
+                        });
+                        subs[i].path = path_name;
+                    } else {
+                        subs[i].lang = '';
+                        subs[i].langShort = '';
+                    }
                     i++;
                 }
                 res.status(200).json(subs);

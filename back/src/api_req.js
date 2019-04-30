@@ -32,13 +32,13 @@ module.exports = {
                 } else {
                     year_min = req.query.year_min
                 }
-                ;
+
                 if ((req.query.year_max == 'null') || (req.query.year_min == "")) {
                     year_max = 10000;
                 } else {
                     year_max = req.query.year_max
                 }
-                ;
+
                 if (data.data.movie_count < 20) {
                     j = data.data.movie_count;
                     page_max = 1;
@@ -171,7 +171,7 @@ module.exports = {
                         k = 0;
                         let exist = false;
                         newtab = new Array();
-                        if (data2.Response == 'True') {
+                        if (data2.Response == 'True' && tab) {
                             while (j < data2.Search.length) {
                                 while (i < tab.length) {
                                     if (tab[i].imdb_code == data2.Search[j].imdbID) {
